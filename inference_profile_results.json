@@ -1,0 +1,75 @@
+{
+  "parameters": {
+    "total": 647657922,
+    "total_mb": 2470.6,
+    "wisdom_bank": 3276800,
+    "wisdom_bank_mb": 12.5,
+    "expansion": 26043200,
+    "membrane": 85209610,
+    "absorbers": 8148288,
+    "condensation": 524967224
+  },
+  "timing": {
+    "single_query_ms": 118.11,
+    "batch_64_ms": 515.33,
+    "per_query_batched_ms": 8.052,
+    "image_query_ms": 120.53,
+    "device": "cpu"
+  },
+  "component_timing_ms": {
+    "absorber": 0.296,
+    "expansion": 12.051,
+    "membrane": 68.574,
+    "condensation": 34.605
+  },
+  "flops": {
+    "Absorber": 40960,
+    "Expansion": 26009600,
+    "Membrane transform": 81920000,
+    "Membrane scoring": 3276800,
+    "Analogy tensor": 6815744,
+    "Permeation": 3276800,
+    "Condensation": 104963200,
+    "total": 226303104,
+    "total_gflops": 0.2263
+  },
+  "comparison": {
+    "GPT-2 Small": {
+      "params": 125000000,
+      "flops_100tok": "25000000000",
+      "ratio": 110
+    },
+    "GPT-2 Large": {
+      "params": 774000000,
+      "flops_100tok": "154800000000",
+      "ratio": 684
+    },
+    "LLaMA 7B": {
+      "params": "7000000000",
+      "flops_100tok": "1400000000000",
+      "ratio": 6186
+    },
+    "LLaMA 70B": {
+      "params": "70000000000",
+      "flops_100tok": "14000000000000",
+      "ratio": 61864
+    },
+    "GPT-4 (~1.8T est.)": {
+      "params": "1800000000000",
+      "flops_100tok": "360000000000000",
+      "ratio": 1590787
+    }
+  },
+  "summary": {
+    "device": "cpu",
+    "total_params": 647657922,
+    "total_mb": 2470.6,
+    "wisdom_bank_mb": 12.5,
+    "single_query_ms": 118.11,
+    "membrane_ms": 68.574,
+    "membrane_pct_wallclock": 58.1,
+    "total_flops": 226303104,
+    "total_gflops": 0.2263,
+    "vs_llama7b_compute_ratio": 6186
+  }
+}

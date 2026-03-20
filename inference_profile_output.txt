@@ -1,0 +1,97 @@
+/home/ubuntu/.local/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:283: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+======================================================================
+Permeator / Permeator Network Architecture
+======================================================================
+  Absorber output (d_abs):        256  ← EXPANDED from raw input
+  HIDDEN neurons (d_w):           6400  ← WHERE WISDOM RESIDES
+  Output neurons (max):           10
+  EXPANSION RATIO:                25× (hidden = 25× absorber output)
+  Hidden/Output ratio:            640× (hidden >> output)
+  Wisdom Bank vectors (n_wisdom): 512
+  Relational projections (K):     8
+  Relational dimension (d_r):     64
+  Domains: ['news', 'emotion', 'film', 'medical', 'vision']
+  Total parameters:               647,657,922
+  Wisdom Bank size:               12.5 MB
+======================================================================
+
+======================================================================
+PERMEATOR AGI — INFERENCE PROFILE (ACTUAL MEASURED NUMBERS)
+======================================================================
+Device: cpu
+
+--- PART 1: ACTUAL PARAMETER COUNTS (from model) ---
+
+  Total parameters:        647,657,922  (2470.6 MB)
+  Wisdom Bank:               3,276,800  (12.5 MB)  [0.5%]
+  Expansion network:        26,043,200  [4.0%]
+  Membrane + Analogy:       85,209,610  [13.2%]
+  Absorbers (5 dom):         8,148,288  [1.3%]
+  Condensation (5 dom):    524,967,224  [81.1%]
+
+--- PART 2: ACTUAL INFERENCE TIMING (cpu, measured) ---
+
+  Single text query (batch=1):   118.11 ms
+  Batch of 64 queries:           515.33 ms  (8.052 ms/query)
+  Single image query:            120.53 ms
+
+--- PART 3: COMPONENT-LEVEL TIMING (measured) ---
+
+  Membrane only (1 query):       68.574 ms  (58.1%)
+  Absorber only:                 0.296 ms  (0.3%)
+  Expansion only:                12.051 ms  (10.2%)
+  Condensation only:             34.605 ms  (29.3%)
+
+--- PART 4: FLOPs BREAKDOWN (from actual model dimensions) ---
+
+  Absorber                    0.0M  (  0.0%)  
+  Expansion                  26.0M  ( 11.5%)  #####
+  Membrane transform         81.9M  ( 36.2%)  ##################
+  Membrane scoring            3.3M  (  1.4%)  
+  Analogy tensor              6.8M  (  3.0%)  #
+  Permeation                  3.3M  (  1.4%)  
+  Condensation              105.0M  ( 46.4%)  #######################
+  TOTAL                     226.3M  (100.0%)  = 0.2263 GFLOPs
+
+  >> Membrane scoring (core innovation): only 1.45% of compute
+  >> Entire inference: 226M multiply-adds in ONE forward pass
+
+--- PART 5: vs TRANSFORMER / LLM (100-token response) ---
+
+  Model                              Params    FLOPs/query    vs Permeator
+  ----------------------------------------------------------------------
+  PERMEATOR (MEASURED)          647,657,922         226M              1x
+  GPT-2 Small (100 tok)         125,000,000            25G           110x more
+  GPT-2 Large (100 tok)         774,000,000           155G           684x more
+  LLaMA 7B (100 tok)           7,000,000,000           1.4T         6,186x more
+  LLaMA 70B (100 tok)          70,000,000,000          14.0T        61,864x more
+  GPT-4 (~1.8T est.) (100 tok) 1,800,000,000,000         360.0T     1,590,787x more
+
+--- PART 6: HEAD-TO-HEAD vs LLaMA 7B ---
+
+                                       PERMEATOR        LLaMA 7B      Ratio
+  ------------------------------------------------------------------------
+  Memory to store model                  2471 MB           13 GB         5x
+  FLOPs per query                           226M           1400G     6,186x
+  Inference type                     Single pass      100 passes           
+  GPU required?                      No (CPU ok)     Yes (A100+)           
+  Can run on phone?                          Yes              No           
+  Measured latency                  118 ms (CPU)   ~500ms (A100)           
+
+======================================================================
+SUMMARY — ALL NUMBERS FROM ACTUAL RUNNING MODEL
+======================================================================
+  Device:           cpu
+  Parameters:       647,657,922 (2471 MB)
+  Wisdom Bank:      3,276,800 (12.5 MB, 0.5% of model)
+  Single query:     118.11 ms on cpu
+  Membrane only:    68.574 ms (58.1% of wall-clock)
+  Total FLOPs:      226M multiply-adds (0.2263 GFLOPs)
+  vs LLaMA 7B:      6,186x LESS compute per query
+
+  CONCLUSION: More memory (2471 MB RAM), less compute (226M FLOPs).
+  The Permeator runs on consumer hardware — no GPU cluster needed.
+======================================================================
+
+Results saved to: /home/ubuntu/environment/permeator/code/inference_profile_results.json

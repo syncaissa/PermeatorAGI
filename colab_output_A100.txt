@@ -1,0 +1,71 @@
+GPU: NVIDIA A100-SXM4-80GB (85.1 GB)
+PyTorch 2.10.0+cu128 | Device: cuda
+
+======================================================================
+PERMEATOR AGI CONFIGURATION — EVERYTHING EXPANDS
+======================================================================
+  Absorber output (d_abs): 256
+  HIDDEN neurons (d_w):    6400
+  EXPANSION RATIO:         25x (hidden = 25x absorber!)
+  Wisdom Bank vectors:     512
+  Analogy projections:     8
+  Domains:                 5 (News, Emotion, Film, Medical, Vision)
+======================================================================
+
+Total parameters: 647,657,922
+
+Training: 15 epochs, 182 seconds total on A100 GPU
+
+=== FINAL RESULTS (Epoch 15) ===
+  news        : 62.3%
+  emotion     : 33.7%
+  film        : 100.0%
+  medical     : 50.0%
+  vision      : 21.2%
+  AVERAGE     : 53.4%
+  Best avg    : 53.5% (epoch 12)
+
+=== MEMBRANE / FILTER PERMEATION ANALYSIS ===
+  news        : perm=0.3258 active=0.3258 sparse=0.6742
+  emotion     : perm=0.2261 active=0.2261 sparse=0.7739
+  film        : perm=0.2159 active=0.2159 sparse=0.7841
+  medical     : perm=0.2055 active=0.2055 sparse=0.7945
+  vision      : perm=0.2673 active=0.2673 sparse=0.7327
+
+=== CROSS-DOMAIN OVERLAP ===
+  news       <-> emotion   : cos=0.7198 shared_top20=2
+  news       <-> film      : cos=0.7082 shared_top20=6
+  news       <-> medical   : cos=0.6827 shared_top20=5
+  news       <-> vision    : cos=0.9067 shared_top20=16
+  emotion    <-> film      : cos=0.9782 shared_top20=3
+  emotion    <-> medical   : cos=0.9372 shared_top20=3
+  emotion    <-> vision    : cos=0.9284 shared_top20=2
+  film       <-> medical   : cos=0.9733 shared_top20=17
+  film       <-> vision    : cos=0.9111 shared_top20=6
+  medical    <-> vision    : cos=0.8770 shared_top20=6
+
+=== WISDOM REUSE ANALYSIS ===
+  Per-domain active wisdom vectors:
+    news        :  176 / 512 active (34.4%)
+    emotion     :  116 / 512 active (22.7%)
+    film        :  110 / 512 active (21.5%)
+    medical     :  105 / 512 active (20.5%)
+    vision      :  122 / 512 active (23.8%)
+
+  Cumulative unique active vectors:
+    After 1 domain(s) (news):     176
+    After 2 domain(s) (emotion):  209
+    After 3 domain(s) (film):     210
+    After 4 domain(s) (medical):  212
+    After 5 domain(s) (vision):   212
+
+  Single-domain avg active vectors: 125.8
+  Total unique across 5 domains:    212
+  Linear expectation (no reuse):    629
+  REUSE RATIO:                      66.3%
+
+=== INFERENCE PROFILE ===
+  Model size:              2470.6 MB total parameters
+  Wisdom Bank:             12.5 MB
+  Inference latency:       4.82 ms per batch (batch_size=64) on A100
+  Membrane operation:      209.7 M multiply-adds
